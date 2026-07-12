@@ -1,6 +1,6 @@
 const SPREADSHEET_ID = '1WJh4UdoD6LaBRhJMxz3LY0Z52xZ6vIe-lYDIfLXcCMY';
 const SHEETS = { guests: 'Гости', scenarios: 'Сценарии', responses: 'Ответы', settings: 'Настройки' };
-const DEFAULT_COPY = 'Приглашаем вас разделить с нами радость этого особенного дня.';
+const DEFAULT_COPY = 'Ждём вас на нашей тёплой деревенской свадьбе — во дворе дома, с музыкой, танцами и гуляньем от души.';
 
 function book_() { return SpreadsheetApp.openById(SPREADSHEET_ID); }
 
