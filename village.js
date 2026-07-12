@@ -3,7 +3,7 @@
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(location.search);
   const guestId = String(params.get('guest') || params.get('id') || '').trim();
   const apiUrl = String(window.XB_APPS_SCRIPT_URL || '').trim();
   const musicFile = String(window.XB_MUSIC_FILE || 'assets/ryazan-moya.mp3').trim();
@@ -25,117 +25,51 @@
     'guests-2': { id: 'guests-2', salutation: 'Дорогие', name: 'гости', scenario: 'general-stay' }
   };
 
-  const defaultHero = 'Ждём вас 25 июля 2026 года в селе Ермо‑Николаевка. Сбор гостей — в 15:00. Праздник пройдёт во дворе дома.';
+  const defaultHero = 'Приглашаем вас разделить с нами радость этого особенного дня.';
 
-  function polishStaticContent() {
-    const setTitle = (selector, value) => {
-      const node = $(selector);
-      if (node) node.textContent = value;
-    };
-
-    setTitle('.countdown-section .title', 'Осталось до свадьбы');
-    setTitle('#main-day .title', 'Свадьба — 25 июля');
-    setTitle('#church .title', 'Венчание — 24 июля');
-    setTitle('#continuation .title', 'Продолжение — 26 июля');
-    setTitle('#dresscode .title', 'Дресс-код');
-    setTitle('#bring .title', 'Что взять с собой');
-    setTitle('#location .title', 'Адрес и связь');
-    setTitle('.gifts-section .title', 'Подарки');
-    setTitle('#faq .title', 'Полезно знать');
-    setTitle('#rsvp .title', 'Подтвердить участие');
-
-    const firstMenu = $('.menu a[href="#main-day"]');
-    if (firstMenu) firstMenu.textContent = 'Свадьба';
-
-    const dressCard = $('#dresscode .simple-card');
-    dressCard?.classList.remove('daisy-card');
-
-    const weatherNote = $('#dresscode .note');
-    if (weatherNote && !weatherNote.querySelector('svg')) {
-      const text = weatherNote.textContent.trim();
-      weatherNote.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg><span>${text}</span>`;
-    }
-
-    const facts = $$('.hero-facts .fact');
-    if (facts[0]) facts[0].querySelector('strong').innerHTML = '<span>25 июля</span><span>2026</span>';
-    if (facts[1]) facts[1].querySelector('strong').innerHTML = '<span>Ермо-</span><span>Николаевка</span>';
-    if (facts[2]) facts[2].querySelector('strong').innerHTML = '<span>Во дворе</span><span>дома</span>';
-
-    const churchLead = $('#church .lead-text');
-    if (churchLead) churchLead.textContent = 'Если вы захотите присоединиться к венчанию, будем рады видеть вас рядом.';
-    const churchCopy = $('#church .body-copy');
-    if (churchCopy) churchCopy.textContent = 'Венчание состоится в храме села Высокие Поляны. Точное время сообщим позже.';
-
-    const continuationCopy = $('#continuation .body-copy');
-    if (continuationCopy) continuationCopy.textContent = '26 июля можно снова приехать во двор. Общего времени сбора нет — приезжайте, когда вам удобно.';
-
-    const staySection = $('[data-section-stay]');
-    if (staySection) {
-      const wasHidden = staySection.hidden;
-      staySection.innerHTML = `
-        <div class="simple-card">
-          <h2 class="title">Где остановиться на ночь</h2>
-          <p class="stay-address">Деревня Лукино</p>
-          <p class="body-copy">Рязанская область, рядом с озером Святое. Точный адрес дома, распределение мест и время заселения сообщим лично.</p>
-          <div class="stay-transfer">
-            <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
-            <p><strong>Вечером будет организован трансфер до места ночёвки.</strong> Машины можно оставить во дворе дома в Ермо‑Николаевке.</p>
-          </div>
-          <ul class="plain-list">
-            <li>двухэтажный деревянный дом для размещения до 8 гостей;</li>
-            <li>спальни, кухня-гостиная и две ванные комнаты;</li>
-            <li>постельное бельё, полотенца, Wi‑Fi и кондиционеры;</li>
-            <li>парковка, веранда и мангальная зона.</li>
-          </ul>
-          <p class="stay-note">Просим соблюдать тишину с 22:00 до 9:00. В доме нельзя курить, использовать открытый огонь и пиротехнику.</p>
-        </div>`;
-      staySection.hidden = wasHidden;
-    }
-  }
-
-  const asBool = (value, fallback) => {
+  function asBool(value, fallback) {
     if (value === undefined || value === null || value === '' || value === 'По сценарию') return fallback;
     if (typeof value === 'boolean') return value;
     const normalized = String(value).trim().toLowerCase();
     if (['да', 'true', '1', 'yes', 'on', 'lukino'].includes(normalized)) return true;
     if (['нет', 'false', '0', 'no', 'off'].includes(normalized)) return false;
     return fallback;
-  };
+  }
 
-  const normalizeInvite = (raw = {}) => {
+  function normalize(raw = {}) {
     const scenarioName = String(raw.scenario || raw['Сценарий'] || 'general-home').trim();
-    const scenario = scenarios[scenarioName] || scenarios['general-home'];
+    const base = scenarios[scenarioName] || scenarios['general-home'];
     return {
       id: String(raw.id || raw.ID || guestId || 'guests-1').trim(),
       salutation: String(raw.salutation || raw['Обращение'] || 'Дорогие').trim(),
       name: String(raw.name || raw['Имя'] || 'гости').trim(),
       scenario: scenarioName,
-      named: asBool(raw.named ?? raw['Именное'], scenario.named),
-      church: asBool(raw.showChurch ?? raw.church ?? raw['Показывать венчание'], scenario.church),
-      afterparty: asBool(raw.showAfterparty ?? raw.afterparty ?? raw['Показывать продолжение'], scenario.afterparty),
-      stay: asBool(raw.showStay ?? raw.stay ?? raw['Показывать ночёвку'], scenario.stay),
+      named: asBool(raw.named ?? raw['Именное'], base.named),
+      church: asBool(raw.showChurch ?? raw.church ?? raw['Показывать венчание'], base.church),
+      afterparty: asBool(raw.showAfterparty ?? raw.afterparty ?? raw['Показывать продолжение'], base.afterparty),
+      stay: asBool(raw.showStay ?? raw.stay ?? raw['Показывать ночёвку'], base.stay),
       heroText: String(raw.heroCopy || raw.heroText || raw['Персональный текст'] || defaultHero).trim(),
       active: asBool(raw.active ?? raw['Активно'], true)
     };
-  };
+  }
 
-  const applyOverrides = (data) => {
+  function withOverrides(data) {
     const next = { ...data };
     if (params.has('church')) next.church = asBool(params.get('church'), next.church);
     if (params.has('after')) next.afterparty = asBool(params.get('after'), next.afterparty);
     if (params.has('stay')) next.stay = params.get('stay') === 'lukino' || asBool(params.get('stay'), next.stay);
     return next;
-  };
+  }
 
-  let invite = applyOverrides(normalizeInvite(fallbacks[guestId] || { id: guestId || 'guests-1' }));
+  let invite = withOverrides(normalize(fallbacks[guestId] || { id: guestId || 'guests-1' }));
 
-  const setVisible = (selector, visible) => {
+  function setVisible(selector, visible) {
     $$(selector).forEach((node) => { node.hidden = !visible; });
-  };
+  }
 
   function applyInvite(raw = invite) {
-    invite = applyOverrides(normalizeInvite(raw));
-    if (!invite.active) invite = applyOverrides(normalizeInvite({ scenario: 'general-home' }));
+    invite = withOverrides(normalize(raw));
+    if (!invite.active) invite = withOverrides(normalize({ scenario: 'general-home' }));
 
     const salutation = $('[data-salutation]');
     const name = $('[data-guest-name]');
@@ -162,7 +96,7 @@
 
   function loadGuestFromSheet() {
     if (!apiUrl || !guestId) return;
-    const callback = `weddingGuest_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+    const callback = `xbGuest_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
     const script = document.createElement('script');
     let timer;
     const cleanup = () => {
@@ -212,10 +146,10 @@
     });
   }
 
-  const formatTime = (seconds) => {
+  function formatTime(seconds) {
     if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
     return `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
-  };
+  }
 
   function initMusic() {
     const card = $('[data-player]');
@@ -236,17 +170,22 @@
       if (current) current.textContent = formatTime(audio.currentTime);
       if (duration) duration.textContent = formatTime(audio.duration);
     };
-    audio.addEventListener('loadedmetadata', () => { sync(); if (status) status.textContent = 'Нажмите кнопку, чтобы включить песню.'; });
+    audio.addEventListener('loadedmetadata', sync);
     audio.addEventListener('timeupdate', sync);
     audio.addEventListener('play', () => card.classList.add('is-playing'));
     audio.addEventListener('pause', () => card.classList.remove('is-playing'));
     audio.addEventListener('ended', () => { card.classList.remove('is-playing'); sync(); });
-    audio.addEventListener('error', () => { if (status) status.textContent = 'Песня временно недоступна. Попробуйте открыть страницу позднее.'; });
+    audio.addEventListener('error', () => { if (status) status.textContent = 'Песня будет доступна после загрузки аудиофайла.'; });
     button.addEventListener('click', async () => {
-      try { if (audio.paused) await audio.play(); else audio.pause(); }
-      catch { if (status) status.textContent = 'Не удалось запустить песню. Попробуйте ещё раз.'; }
+      try {
+        if (audio.paused) await audio.play(); else audio.pause();
+      } catch {
+        if (status) status.textContent = 'Не удалось запустить песню. Попробуйте ещё раз.';
+      }
     });
-    progress.addEventListener('input', () => { if (audio.duration) audio.currentTime = (Number(progress.value) / 100) * audio.duration; });
+    progress.addEventListener('input', () => {
+      if (audio.duration) audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+    });
   }
 
   function formPayload() {
@@ -260,9 +199,10 @@
       guestName,
       mainAttendance: $('input[name="day25"]:checked')?.value || 'Будем',
       church: invite.church ? ($('#churchCheck')?.checked ? 'Да' : 'Нет') : 'Не показывалось',
+      afterparty: 'Без подтверждения',
       stay: invite.stay ? ($('#stayCheck')?.checked ? 'Да' : 'Нет') : 'Не предусмотрено',
       comment: String($('#commentField')?.value || '').trim(),
-      source: window.location.href
+      source: location.href
     };
   }
 
@@ -316,7 +256,7 @@
       button.disabled = true;
       status.textContent = 'Отправляем ответ…';
       try {
-        localStorage.setItem(`wedding_rsvp_${guestId || 'general'}`, JSON.stringify(payload));
+        localStorage.setItem(`xb_village_rsvp_${guestId || 'general'}`, JSON.stringify(payload));
         if (await sendToSheet(payload)) {
           status.textContent = 'Спасибо! Ответ отправлен.';
         } else {
@@ -332,7 +272,6 @@
     });
   }
 
-  polishStaticContent();
   applyInvite(invite);
   loadGuestFromSheet();
   initCountdown();
