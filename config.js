@@ -1,6 +1,17 @@
 window.XB_APPS_SCRIPT_URL = '';
 window.XB_MUSIC_FILE = 'assets/ryazan-moya.mp3';
 window.XB_CONTACT_PHONE = '79969662393';
+
+(() => {
+  const existing = document.querySelector('link[data-wedding-redesign]');
+  if (existing) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'redesign.css?v=f5cb6103';
+  link.dataset.weddingRedesign = 'true';
+  document.head.appendChild(link);
+})();
+
 window.addEventListener('DOMContentLoaded', () => {
   const heroCopy = document.querySelector('[data-hero-copy]');
   if (heroCopy) {
