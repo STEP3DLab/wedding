@@ -1,0 +1,56 @@
+:root{
+  --coffee:#765437;
+  --coffee-2:#9a7350;
+  --warm-paper:#f3eadf;
+  --warm-paper-2:#eadfce;
+  --warm-milk:#fbf6ee;
+  --warm-gold:#b58a57;
+  --warm-ink:#3e3025;
+  --warm-muted:#776a60;
+  --warm-line:rgba(78,58,43,.14);
+}
+html{background:#e8ded2}
+body{background:linear-gradient(180deg,#e9dfd3,#f7f0e7);color:var(--warm-ink)}
+.page{background:var(--warm-paper);box-shadow:0 28px 80px rgba(76,55,39,.18)}
+.menu{background:rgba(102,73,48,.99);color:var(--warm-milk);box-shadow:0 22px 46px rgba(76,55,39,.22)}
+.hero{min-height:620px;padding:24px 22px 32px;align-items:flex-end;background-image:url('image.png');background-position:center 32%}
+.hero-overlay{background:linear-gradient(180deg,rgba(91,63,40,.03),rgba(91,63,40,.18))}
+.hero-panel{padding:31px 20px 27px;border-color:rgba(255,255,255,.52);background:rgba(250,244,235,.76);color:var(--warm-ink);backdrop-filter:blur(18px) saturate(.9);-webkit-backdrop-filter:blur(18px) saturate(.9);box-shadow:0 18px 45px rgba(76,55,39,.16)}
+.hero-panel:before{border-color:rgba(118,84,55,.11)}
+.hero-greeting,.hero-greeting strong,.hero-date{color:var(--coffee)}
+.hero-place{color:var(--warm-gold)}
+.hero-copy{color:var(--warm-muted);margin-top:18px;line-height:1.66}
+.primary{background:#dfcbb2;color:var(--coffee)}
+.outline{border-color:rgba(118,84,55,.34);color:var(--coffee);background:rgba(255,255,255,.18)}
+.dark{background:var(--coffee);color:var(--warm-milk)}
+.pale{background:#e6d8c6;color:var(--coffee)}
+.countdown-section{padding:52px 28px;background:linear-gradient(180deg,#8b6745,#a07a56);color:var(--warm-milk)}
+.light-head h2{color:var(--warm-milk)}
+.light-head p,.count span{color:#f0e4d5}
+.count-frame{border-color:rgba(251,246,238,.22)}
+.count{border-color:rgba(251,246,238,.18);background:rgba(251,246,238,.08)}
+.section{padding:48px 28px;background:var(--warm-paper);border-top:1px solid rgba(78,58,43,.08)}
+.section.soft{background:var(--warm-paper-2)}
+.section-head h2,.detail-list p,.stay-list p,.bring-list span,.plain-grid div,.address,.contact-row a,.faq-list summary{color:var(--warm-ink)}
+.section-date,.detail-list .icon,.stay-list .icon,.bring-list .icon,.plain-grid .icon,.contact-row .icon,.music-title .icon{color:var(--warm-gold)}
+.section-copy,.weather-note,.contact-row small,.music-title span,.music-time,.music-status,.faq-list p,.form-help,.form-status{color:var(--warm-muted)}
+.detail-list,.stay-list,.bring-list,.contact-row,.faq-list{border-color:var(--warm-line)}
+.detail-list>div,.stay-list>div,.bring-list>div,.plain-grid div,.faq-list details{border-color:var(--warm-line)}
+.photo-divider{height:74px;background-image:url('assets/daisy-strip.jpg')}
+.weather-note{max-width:340px;margin:20px auto 0;padding:16px 17px;border:1px solid rgba(118,84,55,.12);border-left:1px solid rgba(118,84,55,.12);border-radius:18px;background:#e8d8c4;font-family:var(--sans);font-size:13px;line-height:1.68}
+.weather-note strong{display:block;margin-bottom:6px;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--coffee)}
+.weather-note span{display:block}
+#location{padding-top:46px;padding-bottom:46px}
+#gifts{border-top:1px solid var(--warm-line);padding-top:44px}
+.music-card{background:#e6d8c6}
+.music-button,.music-progress::-webkit-slider-thumb{background:var(--warm-gold)}
+.choice input:checked+span{background:var(--coffee);color:var(--warm-milk)}
+.check input{accent-color:var(--coffee)}
+.rsvp-section{background:linear-gradient(180deg,#eee4d7,#e7dac9)}
+.closing{min-height:480px;padding:32px 24px;background-image:url('image.png');background-position:center 38%}
+.closing-overlay{background:linear-gradient(180deg,rgba(91,63,40,.05),rgba(91,63,40,.25))}
+.closing-panel{padding:27px 22px;background:rgba(250,244,235,.76);color:var(--warm-ink);border-color:rgba(255,255,255,.5);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.closing-panel h2{color:var(--coffee)}
+.closing-panel p{color:var(--warm-muted)}
+.closing-panel img{filter:sepia(.65) saturate(.7) brightness(.72)}
+@media(max-width:370px){.hero{min-height:590px;padding-left:18px;padding-right:18px}.section{padding-left:21px;padding-right:21px}}
