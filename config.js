@@ -7,7 +7,7 @@ window.XB_CONTACT_PHONE = '79969662393';
   if (existing) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = 'redesign.css?v=f5cb6103';
+  link.href = 'redesign.css?v=cb89194c';
   link.dataset.weddingRedesign = 'true';
   document.head.appendChild(link);
 })();
