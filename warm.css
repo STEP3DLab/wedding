@@ -29,9 +29,9 @@ body{background:linear-gradient(180deg,#e9dfd3,#f7f0e7);color:var(--warm-ink)}
 .light-head p,.count span{color:#f0e4d5}
 .count-frame{border-color:rgba(251,246,238,.22)}
 .count{border-color:rgba(251,246,238,.18);background:rgba(251,246,238,.08)}
-.section{padding:46px 28px;background:var(--warm-paper);border-top:1px solid rgba(78,58,43,.08)}
+.section{padding:48px 28px;background:var(--warm-paper);border-top:1px solid rgba(78,58,43,.08)}
 .section.soft{background:var(--warm-paper-2)}
-.section-head h2,.detail-list p,.stay-list p,.bring-list span,.plain-grid div,.address,.contact-row a,.faq-list summary{color:var(--warm-ink)}
+.section-head h2,.detail-list p,.stay-list p,.bring-list span,.plain-grid div,.contact-row a,.faq-list summary{color:var(--warm-ink)}
 .section-date,.detail-list .icon,.stay-list .icon,.bring-list .icon,.plain-grid .icon,.contact-row .icon,.music-title .icon{color:var(--warm-gold)}
 .section-copy,.weather-note,.contact-row small,.music-title span,.music-time,.music-status,.faq-list p,.form-help,.form-status{color:var(--warm-muted)}
 .detail-list,.stay-list,.bring-list,.contact-row,.faq-list{border-color:var(--warm-line)}
@@ -41,14 +41,14 @@ body{background:linear-gradient(180deg,#e9dfd3,#f7f0e7);color:var(--warm-ink)}
 .weather-note strong{display:block;margin-bottom:6px;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--coffee);text-align:center}
 .weather-note span{display:block}
 
-/* Адрес: единая вертикальная сетка без провалов */
+/* Адрес: обычный текст и единая вертикальная сетка */
 #location{padding:38px 28px 30px;background:var(--warm-paper-2)}
 #location .section-head{margin-bottom:22px}
 #location .section-head .orn{margin-bottom:0}
 .address-block{max-width:338px;margin:0 auto;text-align:left}
 .address-block small{display:block;margin-bottom:8px;font-size:8px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--warm-muted)}
-.address-block p{margin:0;font-family:var(--serif);font-size:27px;line-height:1.22;color:var(--warm-ink)}
-.address-block strong{font-weight:600}
+.address-block p{margin:0;font-family:var(--sans);font-size:14px;line-height:1.72;font-weight:400;color:var(--warm-ink)}
+.address-block strong{font-family:inherit;font-weight:600}
 .route-btn{display:flex;width:100%;max-width:338px;margin:20px auto 14px;min-height:48px}
 
 /* Узкий плеер — один аккуратный ряд */
@@ -64,9 +64,9 @@ body{background:linear-gradient(180deg,#e9dfd3,#f7f0e7);color:var(--warm-ink)}
 #location .contact-row small{font-size:7px;letter-spacing:.13em}
 #location .contact-row a{margin-top:4px;font-size:22px;line-height:1.15}
 
-/* Подарки отделены, но без лишнего воздуха */
-#gifts{position:relative;padding:34px 28px 40px;background:var(--warm-paper)}
-#gifts:before{content:'';position:absolute;top:0;left:28px;right:28px;height:1px;background:var(--warm-line)}
+/* Явное разделение между адресом/ночёвкой и подарками */
+#gifts{position:relative;margin-top:0;padding:36px 28px 40px;background:var(--warm-paper);border-top:18px solid var(--warm-milk);box-shadow:inset 0 1px 0 var(--warm-line)}
+#gifts:before{display:none}
 #gifts .section-head .orn{margin-bottom:15px}
 #gifts .section-copy{max-width:310px;margin-top:0;line-height:1.65}
 
@@ -86,7 +86,6 @@ body{background:linear-gradient(180deg,#e9dfd3,#f7f0e7);color:var(--warm-ink)}
   .section{padding-left:21px;padding-right:21px}
   #location{padding-left:21px;padding-right:21px}
   #gifts{padding-left:21px;padding-right:21px}
-  #gifts:before{left:21px;right:21px}
-  .address-block p{font-size:25px}
+  .address-block p{font-size:13px}
   #location .contact-row a{font-size:20px}
 }
