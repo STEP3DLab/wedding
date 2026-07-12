@@ -1,4 +1,4 @@
-name: Import and deploy wedding site
+name: Deploy wedding site
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
   group: wedding-pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -21,54 +21,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout standalone repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Import final site on first run
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ ! -f index.html ]; then
-            BASE="https://raw.githubusercontent.com/STEP3DLab/XB/d8091abe46dea11a5f716df47c87ce477bd6c409"
-            mkdir -p assets apps-script
-            curl -fsSL "$BASE/index.html" -o index.html
-            curl -fsSL "$BASE/village.css" -o village.css
-            curl -fsSL "$BASE/final.css" -o final.css
-            curl -fsSL "$BASE/village.js" -o village.js
-            curl -fsSL "$BASE/monogram.svg" -o monogram.svg
-            curl -fsSL "$BASE/assets/hero.jpg" -o assets/hero.jpg
-            curl -fsSL "$BASE/assets/daisy-strip.jpg" -o assets/daisy-strip.jpg
-            curl -fsSL "$BASE/assets/daisy-cutout.webp" -o assets/daisy-cutout.webp
-            curl -fsSL "$BASE/%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%BC%D0%BE%D1%8F.mp3" -o assets/ryazan-moya.mp3
-            cat > config.js <<'EOF'
-          window.XB_APPS_SCRIPT_URL = '';
-          window.XB_MUSIC_FILE = 'assets/ryazan-moya.mp3';
-          window.XB_CONTACT_PHONE = '79969662393';
-          document.documentElement.style.setProperty('--daisies-image', "url('assets/daisy-cutout.webp')");
-          (() => {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'final.css';
-            document.head.appendChild(link);
-          })();
-          EOF
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add index.html village.css final.css village.js config.js monogram.svg assets
-            git commit -m "Import final wedding invitation site"
-            git push
-          fi
-
-      - name: Prepare Pages artifact
-        run: |
-          rm -rf _site
-          mkdir _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' --exclude='README.md' ./ _site/
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
+      - name: Prepare site
+        run: |
+          rm -rf _site
+          mkdir _site
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='_site' \
+            --exclude='README.md' \
+            ./ _site/
+          touch _site/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
