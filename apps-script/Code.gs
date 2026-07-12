@@ -1,6 +1,6 @@
 const SPREADSHEET_ID = '1WJh4UdoD6LaBRhJMxz3LY0Z52xZ6vIe-lYDIfLXcCMY';
 const SHEETS = { guests: 'Гости', scenarios: 'Сценарии', responses: 'Ответы', settings: 'Настройки' };
-const DEFAULT_COPY = 'Ждём вас 25 июля 2026 года в селе Ермо-Николаевка. Сбор гостей — в 15:00. Праздник пройдёт во дворе дома.';
+const DEFAULT_COPY = 'Приглашаем вас разделить с нами радость этого особенного дня.';
 
 function book_() { return SpreadsheetApp.openById(SPREADSHEET_ID); }
 
