@@ -1,6 +1,41 @@
-/* Убираем все лишние декоративные полосы и пустые перебивки между блоками */
-:root{--separator:transparent}
-.section,.countdown-section,.closing{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
-.photo-divider{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;overflow:hidden!important}
+/* Финальный слой: удаляем все лишние полосы, перебивки и пустые разделители */
+:root{--separator:transparent!important}
+.section,.countdown-section,.closing{
+  border-top:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+}
+.photo-divider{
+  display:none!important;
+  height:0!important;
+  max-height:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:none!important;
+  overflow:hidden!important;
+}
+#main-day + .photo-divider,
+#bring + .photo-divider{
+  display:none!important;
+  height:0!important;
+}
+#main-day + .photo-divider + #church,
+#bring + .photo-divider + #location{
+  border-top:0!important;
+  margin-top:0!important;
+}
+#date,#main-day,#church,#continuation,#entertainment,#dresscode,#bring,#location,#stay,#gifts,#faq,#rsvp{
+  border-top:0!important;
+  border-bottom:0!important;
+}
+#date::before,#main-day::before,#church::before,#continuation::before,#entertainment::before,#dresscode::before,#bring::before,#location::before,#stay::before,#gifts::before,#faq::before,#rsvp::before,
+#date::after,#main-day::after,#church::after,#continuation::after,#entertainment::after,#dresscode::after,#bring::after,#location::after,#stay::after,#gifts::after,#faq::after,#rsvp::after{
+  display:none!important;
+  content:none!important;
+}
 #gifts{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
-#gifts:before,#gifts:after{display:none!important}
+#gifts:before,#gifts:after{display:none!important;content:none!important}
