@@ -1,4 +1,4 @@
-window.XB_APPS_SCRIPT_URL = '';
+window.XB_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxo2WLL2cuTmiw3mggZietnPBfLdrCDoUys3cZ88zPWVSrb2ff8iGM5x74e3_rV2ZUt/exec';
 window.XB_MUSIC_FILE = 'assets/ryazan-moya.mp3';
 window.XB_CONTACT_PHONE = '79969662393';
 
