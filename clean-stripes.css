@@ -1,6 +1,6 @@
-/* Убираем лишние декоративные полосы между блоками */
+/* Убираем все лишние декоративные полосы и пустые перебивки между блоками */
 :root{--separator:transparent}
-.section,.countdown-section,.closing{border-top:0!important;box-shadow:none!important}
-.photo-divider{border-top:0!important;border-bottom:0!important}
+.section,.countdown-section,.closing{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
+.photo-divider{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;overflow:hidden!important}
 #gifts{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
 #gifts:before,#gifts:after{display:none!important}
