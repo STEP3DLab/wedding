@@ -7,6 +7,9 @@ window.XB_CONTACT_PHONE = '79969662393';
   css.rel = 'stylesheet';
   css.href = 'clean-stripes.css?v=62046c6c';
   document.head.appendChild(css);
+
+  const formHelp = document.querySelector('#rsvpForm .form-help');
+  if (formHelp) formHelp.remove();
 })();
 
 window.addEventListener('DOMContentLoaded', () => {
