@@ -40,17 +40,43 @@
 #gifts{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
 #gifts:before,#gifts:after{display:none!important;content:none!important}
 
-/* RSVP: единая типографика и ровные интервалы во всех гостевых сценариях */
+/* RSVP: одна гарнитура, один кегль и единый вертикальный ритм */
 #rsvpForm{
-  --rsvp-control-font-size:13px;
+  --rsvp-font-size:13px;
+  --rsvp-line-height:1.5;
   --rsvp-label-gap:8px;
   --rsvp-row-gap:14px;
   display:grid;
   gap:var(--rsvp-row-gap);
   margin-top:0;
+  font-family:var(--sans);
+  font-size:var(--rsvp-font-size);
+  font-weight:500;
+  line-height:var(--rsvp-line-height);
 }
 #rsvpForm > *{margin-top:0;margin-bottom:0}
-#rsvpForm .form-help{margin:0 0 2px}
+#rsvpForm .form-help,
+#rsvpForm .field label,
+#rsvpForm .choice-group legend,
+#rsvpForm .field input[type="text"],
+#rsvpForm .field input[type="text"]::placeholder,
+#rsvpForm .choice span,
+#rsvpForm .check,
+#rsvpForm .submit-button,
+#rsvpForm .field-error,
+#rsvpForm .form-status{
+  font-family:var(--sans);
+  font-size:var(--rsvp-font-size);
+  font-style:normal;
+  font-weight:500;
+  line-height:var(--rsvp-line-height);
+  letter-spacing:0;
+  text-transform:none;
+}
+#rsvpForm .form-help{
+  margin:0 0 2px;
+  text-align:center;
+}
 #rsvpForm .field{
   display:grid;
   gap:var(--rsvp-label-gap);
@@ -60,24 +86,13 @@
 #rsvpForm .choice-group legend{
   margin:0;
   padding:0;
-  font-family:var(--sans);
-  font-size:10px;
-  line-height:1.4;
-}
-#rsvpForm .field input[type="text"],
-#rsvpForm .choice span,
-#rsvpForm .check{
-  font-family:var(--sans);
-  font-size:var(--rsvp-control-font-size);
-  font-weight:500;
-  line-height:1.45;
+  color:var(--muted);
 }
 #rsvpForm .field input[type="text"]{
   min-height:48px;
   padding:12px 14px;
 }
 #rsvpForm .field input[type="text"]::placeholder{
-  font:inherit;
   color:var(--muted);
   opacity:.72;
 }
@@ -111,13 +126,16 @@
   height:18px;
   margin:1px 0 0;
 }
-#rsvpForm .field-error{
+#rsvpForm .check span{display:block}
+#rsvpForm .field-error,
+#rsvpForm .form-status{
   min-height:0;
   margin:0;
-  font-family:var(--sans);
-  line-height:1.4;
 }
 #rsvpForm .field-error:empty,
 #rsvpForm .form-status:empty{display:none}
-#rsvpForm .submit-button{margin:2px 0 0}
-#rsvpForm .form-status{min-height:0;margin:0}
+#rsvpForm .submit-button{
+  min-height:48px;
+  margin:2px 0 0;
+}
+#rsvpForm .form-status{text-align:center}
