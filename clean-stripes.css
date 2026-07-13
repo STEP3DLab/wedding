@@ -1,0 +1,6 @@
+/* Убираем лишние декоративные полосы между блоками */
+:root{--separator:transparent}
+.section,.countdown-section,.closing{border-top:0!important;box-shadow:none!important}
+.photo-divider{border-top:0!important;border-bottom:0!important}
+#gifts{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
+#gifts:before,#gifts:after{display:none!important}
