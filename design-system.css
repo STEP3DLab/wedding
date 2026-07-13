@@ -1,0 +1,69 @@
+/* Wedding invitation design system */
+:root{
+  --ds-page:#eee3d5;
+  --ds-section:#f5ede3;
+  --ds-section-alt:#eadcca;
+  --ds-surface:#fffaf3;
+  --ds-accent:#8c6242;
+  --ds-accent-hover:#765137;
+  --ds-text:#3b3028;
+  --ds-muted:#776c64;
+  --ds-line:rgba(73,54,42,.14);
+  --ds-section-y:48px;
+  --ds-content:340px;
+}
+html{background:var(--ds-page)}
+body{background:linear-gradient(180deg,#e8ddcf,#f6eee5);color:var(--ds-text)}
+.page{background:var(--ds-section);box-shadow:0 28px 80px rgba(69,49,34,.16)}
+.section-head h2,.countdown-head h2,.closing-panel h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(43px,11.7vw,50px);line-height:.94;letter-spacing:-.03em}
+.section-date{margin-top:8px;font-family:var(--serif);font-size:28px;line-height:1;color:var(--ds-accent)}
+.section-copy,.detail-list p,.stay-list p,.bring-list span,.weather-note,.address-block p,.contact-row,.faq-list p,.form-help{font-family:var(--sans);font-size:13px;line-height:1.68}
+.section{padding:var(--ds-section-y) 28px;background:var(--ds-section);border-top:1px solid var(--ds-line)}
+.section.soft{background:var(--ds-section-alt)}
+.section-head{margin:0 auto 22px;text-align:center}
+.section-head .orn{margin:14px auto 0}
+.section-copy{max-width:var(--ds-content);margin:0 auto;text-align:center;color:var(--ds-muted)}
+.detail-list,.stay-list,.bring-list{margin:22px 0 0}
+.two-actions,.plain-grid{margin-top:22px}
+.photo-divider{height:66px}
+.btn{min-height:48px;padding:0 22px;border-radius:999px;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.14em}
+.dark{background:var(--ds-accent);color:#fffaf3}
+.dark:hover{background:var(--ds-accent-hover)}
+.countdown-section{padding:var(--ds-section-y) 28px;background:linear-gradient(180deg,#dfc5a7 0%,#d4b28e 100%);color:var(--ds-text);border-top:1px solid rgba(73,54,42,.08);border-bottom:1px solid rgba(73,54,42,.10)}
+.countdown-head{margin:0 auto 21px;text-align:center}
+.countdown-head h2{color:var(--ds-text)}
+.countdown-head .orn{margin:14px auto 17px}
+.countdown-head p{margin:0;color:rgba(59,48,40,.66)}
+.count-frame{max-width:var(--ds-content);margin:0 auto;padding:14px;border:1px solid rgba(255,250,243,.55);border-radius:25px;background:rgba(255,250,243,.16);box-shadow:none}
+.count-row{gap:8px}
+.count{min-width:0;padding:15px 3px;border-color:rgba(255,250,243,.58);background:rgba(255,250,243,.20)}
+.count strong{font-size:29px;color:var(--ds-text)}
+.count span{color:rgba(59,48,40,.61)}
+.countdown-music{max-width:var(--ds-content);margin:15px auto 0}
+.countdown-music .compact-player{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;margin:0;padding:10px 12px;border:1px solid rgba(73,54,42,.10);border-radius:16px;background:rgba(255,250,243,.58);box-shadow:0 8px 20px rgba(79,55,37,.07)}
+.countdown-music .music-button{width:42px;height:42px;background:var(--ds-accent)}
+.countdown-music .music-progress{min-width:0}
+.countdown-music .music-time{white-space:nowrap;font-size:8px;color:var(--ds-muted)}
+.countdown-music .music-status{display:none}
+#location{padding:var(--ds-section-y) 28px;background:var(--ds-section-alt);border-top:1px solid var(--ds-line)}
+#location .section-head{margin:0 auto 22px;padding:0;background:transparent;border:0}
+#location .address-block{width:100%;max-width:var(--ds-content);margin:0 auto;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:center}
+#location .address-block small{display:block;margin:0 0 9px;font-family:var(--sans);font-size:8px;line-height:1.2;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ds-muted)}
+#location .address-block p{margin:0;font-family:var(--sans);font-size:13px;line-height:1.72;font-weight:400;color:var(--ds-text)}
+#location .address-block strong{font:inherit;font-weight:700}
+#location .route-btn{display:flex;width:100%;max-width:290px;min-width:0;margin:20px auto 0;box-shadow:0 9px 20px rgba(77,53,36,.12)}
+#location>.compact-player{display:none}
+#location .contact-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:var(--ds-content);margin:25px auto 0;padding:20px 0 0;border:0;border-top:1px solid var(--ds-line);border-radius:0;background:transparent;text-align:center}
+#location .contact-row .icon{width:18px;height:18px;padding:0;margin:0;border-radius:0;background:transparent;color:var(--ds-accent)}
+#location .contact-row small{display:block;font-family:var(--sans);font-size:7px;line-height:1.35;letter-spacing:.13em;text-transform:uppercase;color:var(--ds-muted)}
+#location .contact-row a{display:block;margin-top:5px;font-family:var(--sans);font-size:15px;line-height:1.35;font-weight:600;color:var(--ds-text)}
+#gifts{position:relative;padding:var(--ds-section-y) 28px;border-top:18px solid var(--ds-surface);border-bottom:1px solid var(--ds-line);background:var(--ds-section);color:var(--ds-text);box-shadow:inset 0 1px 0 rgba(73,54,42,.05)}
+#gifts:before,#gifts:after{content:none}
+#gifts .section-head{margin:0 auto 20px;padding:0}
+#gifts .section-head h2{color:var(--ds-text)}
+#gifts .section-head .orn{margin:14px auto 0;color:var(--ds-text);opacity:.46}
+#gifts .section-copy{max-width:300px;margin:0 auto;padding:0;color:var(--ds-muted);font-size:13px;line-height:1.7}
+#church,#continuation,#entertainment,#dresscode,#bring,#stay,#faq,#rsvp,#main-day,#date{padding-top:var(--ds-section-y);padding-bottom:var(--ds-section-y)}
+#church .section-head,#continuation .section-head,#entertainment .section-head,#dresscode .section-head,#bring .section-head,#stay .section-head,#faq .section-head,#rsvp .section-head,#main-day .section-head,#date .section-head{margin-bottom:22px}
+.weather-note{margin-top:20px}
+@media(max-width:370px){:root{--ds-section-y:42px}.section,#location,#gifts,.countdown-section{padding-left:21px;padding-right:21px}#location .route-btn{max-width:100%}.countdown-music .compact-player{grid-template-columns:40px minmax(0,1fr) auto;padding:9px 10px}.countdown-music .music-button{width:40px;height:40px}}
