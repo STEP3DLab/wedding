@@ -5,7 +5,7 @@ window.XB_CONTACT_PHONE = '79969662393';
 (() => {
   const css = document.createElement('link');
   css.rel = 'stylesheet';
-  css.href = 'clean-stripes.css?v=13ae508c';
+  css.href = 'clean-stripes.css?v=758d58fc';
   document.head.appendChild(css);
 })();
 
