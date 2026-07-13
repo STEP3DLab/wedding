@@ -115,18 +115,55 @@
 #rsvpForm .check{
   display:grid;
   grid-template-columns:18px minmax(0,1fr);
-  align-items:start;
+  align-items:center;
   gap:10px;
   min-height:48px;
   margin:0;
-  padding:13px 14px;
+  padding:0 14px;
+  border:1px solid transparent;
+  border-radius:15px;
+  background:rgba(255,255,255,.48);
+  cursor:pointer;
 }
 #rsvpForm .check input{
+  -webkit-appearance:none;
+  appearance:none;
+  display:grid;
+  place-items:center;
   width:18px;
   height:18px;
-  margin:1px 0 0;
+  margin:0;
+  border:1.5px solid rgba(72,52,39,.32);
+  border-radius:4px;
+  background:rgba(255,255,255,.72);
+  cursor:pointer;
+  transition:border-color .18s ease,background-color .18s ease,box-shadow .18s ease;
 }
-#rsvpForm .check span{display:block}
+#rsvpForm .check input::after{
+  content:'';
+  width:5px;
+  height:9px;
+  border:solid #fffaf3;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg) scale(0);
+  transform-origin:center;
+  transition:transform .14s ease;
+}
+#rsvpForm .check input:checked{
+  border-color:var(--accent);
+  background:var(--accent);
+}
+#rsvpForm .check input:checked::after{
+  transform:rotate(45deg) scale(1);
+}
+#rsvpForm .check input:focus-visible{
+  outline:0;
+  box-shadow:0 0 0 3px rgba(139,98,67,.18);
+}
+#rsvpForm .check span{
+  display:block;
+  min-width:0;
+}
 #rsvpForm .field-error,
 #rsvpForm .form-status{
   min-height:0;
